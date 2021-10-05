@@ -17,7 +17,17 @@ our previous example. You may want to use files from outside the container, copy
 those files into the container, and just generally learn a little bit about software
 installation. This episode will cover these. Note that the examples will get gradually
 more and more complex -- most day-to-day use of containers can be accomplished
-using the first 1--2 sections on this page.
+using the first 1--2 sections on this page. We'll begin with some general background on why accessing files on your host system from within a container can be useful. 
+
+## Accessing files on the host system from within your containers
+
+As we've seen in previous sections, a running container is based on an image. The image is a bundle of files including core operating system files and potentially additional software and data too. If you have an image that, for example, contains a trained machine learning model that can identify whether or not a picture contains a giraffe, you'll probably want to run a container from that image and then ask it to look at one or more pictures to find out whether they contain a giraffe!
+
+Bundling the pictures you want to test into the image is inefficient and impractical. If I have 10 images that I want to check to see whether any of them contain a giraffe, I'd need to rebuild my image from a Dockerfile, adding in the images I want to test (for example using the `COPY` command in the Dockerfile). I then have an image that is only capable of telling me whether any of the 10 pictures bundled within it contain a giraffe. Once I've run this once, it's served its purpose and is no longer of much use. But I now have another set of pictures I want to check - I really don't want to have to rebuild my Docker image, including different pictures each time. It would be much easier if I have a generic image that has the functionality to tell me whether pictures contain a giraffe. I can then run a container from that image, pointing it to the location where the pictures are stored that I want it to check.
+
+The most common way to do this is to _bind_ a location on the host computer where Docker is running _into_ a running container. We tell Docker _which location_ on the host system we want to make available inside the running container and the path/directory inside the container that that we want this to be visible. The container can then access the pictures that I want the software in my running container to analyse, at the location I've told Docker to make them visible.
+
+Note that this _bind mounting_ of a location on the host system into a container doesn't actually copy any files into the container, it just makes files stored on the host system visible inside the container. You could think of this a little like plugging in an external USB flash drive to your computer.
 
 ## Using scripts and files from outside the container
 
