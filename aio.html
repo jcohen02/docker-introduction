@@ -406,7 +406,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introducing Containers</a></p>
 <hr>
-<p>Last updated on 2024-08-01 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -479,6 +479,22 @@ gripes or challenges.</p>
 </div>
 </div>
 </div>
+<div id="what-is-a-software-dependency" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="what-is-a-software-dependency" class="callout-inner">
+<h3 class="callout-title">What is a software <em>dependency</em>?</h3>
+<div class="callout-content">
+<p>We will mention software <em>dependencies</em> a lot in this section
+of the workshop so it is good to clarify this term up front. A software
+dependency is a relationship between software components where one
+component relies on the other to work properly. For example, if a
+software application uses a library to query a database, the application
+depends on that library.</p>
+</div>
+</div>
+</div>
 <p>You may have come up with some of the following:</p>
 <ul>
 <li>you want to use software that doesn’t exist for the operating system
@@ -539,55 +555,33 @@ cannot recreate your system’s unique configuration.</li>
 containers to the rescue! Containers provide a way to package up
 software dependencies and access to resources such as files and
 communications networks in a uniform manner.</p>
-</section><section><h2 class="section-heading" id="what-is-a-container-what-is-docker">What is a Container? What is Docker?<a class="anchor" aria-label="anchor" href="#what-is-a-container-what-is-docker"></a>
+</section><section><h2 class="section-heading" id="what-is-a-container">What is a Container?<a class="anchor" aria-label="anchor" href="#what-is-a-container"></a>
 </h2>
 <hr class="half-width">
-<p>[Docker][Docker] is a tool that allows you to build what are called
-<strong>containers</strong>. It’s not the only tool that can create
-containers, but is the one we’ve chosen for this workshop. But what
-<em>is</em> a container?</p>
-<p>To understand containers, let’s first talk briefly about your
-computer.</p>
-<p>Your computer has some standard pieces that allow it to work – often
-what’s called the hardware. One of these pieces is the CPU or processor;
-another is the amount of memory or RAM that your computer can use to
-store information temporarily while running programs; another is the
-hard drive, which can store information over the long-term. All these
-pieces work together to do the computing of a computer, but we don’t see
-them because they’re hidden from view (usually).</p>
-<p>Instead, what we see is our desktop, program windows, different
-folders, and files. These all live in what’s called the filesystem.
-Everything on your computer – programs, pictures, documents, the
-operating system itself – lives somewhere in the filesystem.</p>
-<p>NOW, imagine you want to install some new software but don’t want to
+<p>Imagine you want to install some research software but don’t want to
 take the chance of making a mess of your existing system by installing a
 bunch of additional stuff (libraries/dependencies/etc.). You don’t want
 to buy a whole new computer because it’s too expensive. What if,
 instead, you could have another independent filesystem and running
 operating system that you could access from your main computer, and that
 is actually stored within this existing computer?</p>
-<p>Or, imagine you have two tools you want to use in your groundbreaking
-research on cat memes: <code>PurrLOLing</code>, a tool that does
-AMAZINGLY well at predicting the best text for a meme based on the cat
-species and <code>WhiskerSpot</code>, the only tool available for
-identifying cat species from images. You want to send cat pictures to
-<code>WhiskerSpot</code>, and then send the species output to
-<code>PurrLOLing</code>. But there’s a problem: <code>PurrLOLing</code>
-only works on Ubuntu and <code>WhiskerSpot</code> is only supported for
-OpenSUSE so you can’t have them on the same system! Again, we really
-want another filesystem (or two) on our computer that we could use to
-chain together <code>WhiskerSpot</code> and <code>PurrLOLing</code> in a
-<strong>computational pipeline</strong>…</p>
-<p>Container systems, like Docker, are special programs on your computer
-that make it possible! The term container can be usefully considered
-with reference to shipping containers. Before shipping containers were
-developed, packing and unpacking cargo ships was time consuming and
-error prone, with high potential for different clients’ goods to become
-mixed up. Just like shipping containers keep things together that should
-stay together, software containers standardize the description and
-creation of a complete software system: you can drop a container into
-any computer with the container software installed (the ‘container
-host’), and it should <em>just work</em>.</p>
+<p>More concretely, Docker Inc use the following definition of a
+container:</p>
+<blockquote>
+<p>A container is a standard unit of software that packages up code and
+all its dependencies so the application runs reliably from one computing
+environment to another.</p>
+</blockquote>
+<p><a href="https://www.docker.com/resources/what-container/" class="external-link uri">https://www.docker.com/resources/what-container/</a></p>
+<p>The term container can be usefully considered with reference to
+shipping containers. Before shipping containers were developed, packing
+and unpacking cargo ships was time consuming and error prone, with high
+potential for different clients’ goods to become mixed up. Just like
+shipping containers keep things together that should stay together,
+software containers standardize the description and creation of a
+complete software system: you can drop a container into any computer
+with the container software installed (the ‘container host’), and it
+should <em>just work</em>.</p>
 <div id="virtualization" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -608,6 +602,15 @@ the filesystem inside.</p>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="what-is-docker">What is Docker?<a class="anchor" aria-label="anchor" href="#what-is-docker"></a>
+</h2>
+<hr class="half-width">
+<p><a href="https://www.docker.com/" class="external-link">Docker</a> is a tool that allows
+you to build and run containers. It’s not the only tool that can create
+containers, but is the one we’ve chosen for this workshop.</p>
+</section><section><h2 class="section-heading" id="container-images">Container Images<a class="anchor" aria-label="anchor" href="#container-images"></a>
+</h2>
+<hr class="half-width">
 <p>One final term: while the <strong>container</strong> is an
 alternative filesystem layer that you can access and run from your
 computer, the <strong>container image</strong> is the ‘recipe’ or
@@ -1852,7 +1855,7 @@ provide information on currently running containers.</li>
 </div>
 </section></section><section id="aio-docker-hub"><p>Content from <a href="docker-hub.html">Finding Containers on Docker Hub</a></p>
 <hr>
-<p>Last updated on 2024-07-31 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/docker-hub.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1876,7 +1879,8 @@ provide information on currently running containers.</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how the Docker Hub augments Docker use.</li>
+<li>Understand the importance of container registries such as Docker
+Hub, quay.io, etc.</li>
 <li>Explore the Docker Hub webpage for a popular Docker container
 image.</li>
 <li>Find the list of tags for a particular Docker container image.</li>
@@ -2016,7 +2020,7 @@ command is sufficient.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>First, search for <code>rocker</code> in Docker Hub. Then look for
 their <code>tidyverse</code> container image. You can look at the list
@@ -2105,7 +2109,7 @@ by tags.</li>
 </div>
 </section></section><section id="aio-creating-container-images"><p>Content from <a href="creating-container-images.html">Creating Your Own Container Images</a></p>
 <hr>
-<p>Last updated on 2024-07-31 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/creating-container-images.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2209,7 +2213,7 @@ work?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A quick search should hopefully show that the way to install R on
 Alpine Linux is:</p>
@@ -2314,7 +2318,7 @@ Dockerfile to replicate the installation we did above?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution: </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Based on our experience above, edit the <code>Dockerfile</code> (in
 your text editor of choice) to look like this:</p>
@@ -2414,7 +2418,7 @@ world”?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>To see your new image, run <code>docker image ls</code>. You
@@ -2458,11 +2462,11 @@ own container image:</p>
 <li>
 <strong>Start smart</strong>, or, don’t install everything from
 scratch! If you’re using Python as your main tool, start with a <a href="https://hub.docker.com/_/python" class="external-link">Python container image</a>. Same
-with <a href="https://hub.docker.com/r/rocker/r-ver/" class="external-link">R</a>. We’ve used
-Alpine Linux as an example in this lesson, but it’s generally not a good
-container image to start with for initial development and
-experimentation because it is a less common distribution of Linux; using
-<a href="https://hub.docker.com/_/ubuntu" class="external-link">Ubuntu</a>, <a href="https://hub.docker.com/_/debian" class="external-link">Debian</a> and <a href="https://hub.docker.com/_/centos" class="external-link">CentOS</a> are all good options
+with the <a href="https://hub.docker.com/r/rocker/r-ver/" class="external-link">R programming
+language</a>. We’ve used Alpine Linux as an example in this lesson, but
+it’s generally not a good container image to start with for initial
+development and experimentation because it is a less common distribution
+of Linux; using <a href="https://hub.docker.com/_/ubuntu" class="external-link">Ubuntu</a>, <a href="https://hub.docker.com/_/debian" class="external-link">Debian</a> and <a href="https://hub.docker.com/_/centos" class="external-link">CentOS</a> are all good options
 for scientific software installations. The program you’re using might
 recommend a particular distribution of Linux, and if so, it may be
 useful to start with a container image for that distribution.</li>
@@ -2586,7 +2590,7 @@ images.</li>
 </div>
 </section></section><section id="aio-advanced-containers"><p>Content from <a href="advanced-containers.html">Creating More Complex Container Images</a></p>
 <hr>
-<p>Last updated on 2024-08-01 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/advanced-containers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2650,23 +2654,60 @@ this page.</p>
 called <code>sum.py</code>. Let’s say we wanted to try running the
 script using a container based on our recently created
 <code>alpine-python</code> container image.</p>
-<div id="running-containers" class="callout discussion">
+<div id="running-containers" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="running-containers" class="callout-inner">
 <h3 class="callout-title">Running containers</h3>
 <div class="callout-content">
-<p>What command would we use to run Python from the
+<p>Question: What command would we use to run Python from the
 <code>alpine-python</code> container?</p>
 </div>
 </div>
 </div>
-<p>If we try running the container and Python script, what happens?</p>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>We can run a container from the alpine-python container image
+using:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> docker container run alice/alpine-python python3 sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> docker container run alice/alpine-python</span></code></pre>
+</div>
+<p>What happens? Since the <code>Dockerfile</code> that we built this
+container image from had a <code>CMD</code> entry that specified
+<code>["python3", "--version"]</code>, running the above command simply
+starts a container from the image, runs the
+<code>python3 --version</code> command and exits. You should have seen
+the installed version of Python printed to the terminal.</p>
+<p>Instead, if we want to run an interactive Python terminal, we can use
+<code>docker container run</code> to override the default run command
+embedded within the container image. So we could run:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> alice/alpine-python python3</span></code></pre>
+</div>
+<p>The <code>-it</code> tells Docker to set up and interactive terminal
+connection to the running container, and then we’re telling Docker to
+run the <code>python3</code> command inside the container which gives us
+an interactive Python interpreter prompt. <em>(type <code>exit()</code>
+to exit!)</em></p>
+</div>
+</div>
+</div>
+</div>
+<p>If we try running the container and Python script, what happens?</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> docker container run alice/alpine-python python3 sum.py</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2680,8 +2721,10 @@ script using a container based on our recently created
 <div id="no-such-file-or-directory" class="callout-inner">
 <h3 class="callout-title">No such file or directory</h3>
 <div class="callout-content">
-<p>What does the error message mean? Why might the Python inside the
-container not be able to find or open our script?</p>
+<p>Question: What does the error message mean? Why might the Python
+inside the container not be able to find or open our script?</p>
+<p>This question is here for you to think about - we explore the answer
+to this question in the content below.</p>
 </div>
 </div>
 </div>
@@ -2721,10 +2764,10 @@ documentation</a>.</p>
 </div>
 </div>
 <p>Let’s try running the command now:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp alice/alpine-python python3 sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp alice/alpine-python python3 sum.py</span></code></pre>
 </div>
 <p>But we get the same error!</p>
 <div class="codewrapper">
@@ -2737,10 +2780,10 @@ ourselves inside the container. Where is the <code>sum.py</code> file?
 It’s in the directory that’s been mapped to <code>/temp</code> – so we
 need to include that in the path to the script. This command should give
 us what we need:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp alice/alpine-python python3 /temp/sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp alice/alpine-python python3 /temp/sum.py</span></code></pre>
 </div>
 <p>Note that if we create any files in the <code>/temp</code> directory
 while the container is running, these files will appear on our host
@@ -2786,12 +2829,12 @@ above and put numbers after the script name?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>This script comes from <a href="https://wiki.python.org/moin/SimplePrograms" class="external-link">the Python Wiki</a>
 and is set to add all numbers that are passed to it as arguments.</p>
@@ -2812,12 +2855,12 @@ you characterize the key components of a Docker command?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here’s a breakdown of each piece of the command above</p>
 <ul>
@@ -2855,27 +2898,27 @@ computer? What’s inside?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>The docker command to run the container interactively is:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp <span class="at">-it</span> alice/alpine-python sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp <span class="at">-it</span> alice/alpine-python sh</span></code></pre>
 </div>
 <p>Once inside, you should be able to navigate to the <code>/temp</code>
 folder and see that’s contents are the same as the files on your host
 computer:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">/#</span> cd /temp</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">/#</span> ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">/#</span> cd /temp</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">/#</span> ls</span></code></pre>
 </div>
 </div>
 </div>
@@ -2896,15 +2939,15 @@ data. Let’s assume that we’ve finished with our <code>sum.py</code>
 script and want to add it to the container image itself.</p>
 <p>In your shell, you should still be in the <code>sum</code> folder in
 the <code>docker-intro</code> folder.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> pwd</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> pwd</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> /Users/yourname/Desktop/docker-intro/sum</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> /Users/yourname/Desktop/docker-intro/sum</span></code></pre>
 </div>
 <p>Let’s add a new line to the <code>Dockerfile</code> we’ve been using
 so far to create a copy of <code>sum.py</code>. We can do so by using
@@ -2913,10 +2956,10 @@ the <code>COPY</code> keyword.</p>
 <p>This line will cause Docker to copy the file from your computer into
 the container’s filesystem. Let’s build the container image like before,
 but give it a different name:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alice/alpine-sum .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alice/alpine-sum .</span></code></pre>
 </div>
 <div id="the-importance-of-command-order-in-a-dockerfile" class="callout">
 <div class="callout-square">
@@ -2956,25 +2999,25 @@ this one. Once inside, try running the Python script.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>You can start the container interactively like so:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> alice/alpine-sum sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> alice/alpine-sum sh</span></code></pre>
 </div>
 <p>You should be able to run the python command inside the container
 like this:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">/#</span> python3 /home/sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">/#</span> python3 /home/sum.py</span></code></pre>
 </div>
 </div>
 </div>
@@ -3044,19 +3087,19 @@ COPY sum.py /home
 # Run the sum.py script as the default command
 CMD ["python3", "/home/sum.py"]</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v1 .</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v1 .</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v1</span></code></pre>
 </div>
 <p>You’ll notice that you can run the container without arguments just
 fine, resulting in <code>sum = 0</code>, but this is boring. Supplying
 arguments however doesn’t work:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">docker</span> container run alpine-sum:v1 10 11 12</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">docker</span> container run alpine-sum:v1 10 11 12</span></code></pre>
 </div>
 <p>results in</p>
 <div class="codewrapper">
@@ -3086,14 +3129,14 @@ ENTRYPOINT ["python3", "/home/sum.py"]
 # the command-line
 CMD ["10", "11"]</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v2 .</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="co"># Most of the time you are interested in the sum of 10 and 11:</span></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v2</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="co"># Sometimes you have more challenging calculations to do:</span></span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v2 12 13 14</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v2 .</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co"># Most of the time you are interested in the sum of 10 and 11:</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v2</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># Sometimes you have more challenging calculations to do:</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v2 12 13 14</span></code></pre>
 </div>
 <div id="overriding-the-entrypoint" class="callout">
 <div class="callout-square">
@@ -3105,10 +3148,10 @@ CMD ["10", "11"]</code></pre>
 <p>Sometimes you don’t want to run the image’s <code>ENTRYPOINT</code>.
 For example if you have a specialized container image that does only
 sums, but you need an interactive shell to examine the container:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> alpine-sum:v2 /bin/sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> alpine-sum:v2 /bin/sh</span></code></pre>
 </div>
 <p>will yield</p>
 <div class="codewrapper">
@@ -3118,10 +3161,10 @@ sums, but you need an interactive shell to examine the container:</p>
 </div>
 <p>You need to override the <code>ENTRYPOINT</code> statement in the
 container image like so:</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> <span class="at">--entrypoint</span> /bin/sh alpine-sum:v2</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">$</span> docker container run <span class="at">-it</span> <span class="at">--entrypoint</span> /bin/sh alpine-sum:v2</span></code></pre>
 </div>
 </div>
 </div>
@@ -3141,11 +3184,11 @@ RUN chmod +x /home/sum.py
 # add /home folder to the PATH
 ENV PATH /home:$PATH</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v3 .</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v3 sum.py 1 2 3 4</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">$</span> docker image build <span class="at">-t</span> alpine-sum:v3 .</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="ex">$</span> docker container run alpine-sum:v3 sum.py 1 2 3 4</span></code></pre>
 </div>
 <div id="best-practices-for-writing-dockerfiles" class="callout">
 <div class="callout-square">
@@ -3187,7 +3230,7 @@ container images by using the <code>COPY</code> instruction in your
 </div>
 </section></section><section id="aio-docker-image-examples"><p>Content from <a href="docker-image-examples.html">Examples of Using Container Images in Practice</a></p>
 <hr>
-<p>Last updated on 2024-08-01 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/docker-image-examples.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3223,19 +3266,7 @@ images and containers, let’s apply what we learned to an example
 workflow.</p>
 <p>You may choose one or more of the following examples to practice
 using containers.</p>
-<section><h2 class="section-heading" id="jekyll-website-example">Jekyll Website Example<a class="anchor" aria-label="anchor" href="#jekyll-website-example"></a>
-</h2>
-<hr class="half-width">
-<p>In this <a href="e02-jekyll-lesson-example.html">Jekyll Website
-example</a>, you can practice rendering this lesson website on your
-computer using the Jekyll static website generator in a Docker
-container. Rendering the website in a container avoids a complicated
-software installation; instead of installing Jekyll and all the other
-tools needed to create the final website, all the work can be done in
-the container. Additionally, when you no longer need to render the
-website, you can easily and cleanly remove the software from your
-computer.</p>
-</section><section><h2 class="section-heading" id="github-actions-example">GitHub Actions Example<a class="anchor" aria-label="anchor" href="#github-actions-example"></a>
+<section><h2 class="section-heading" id="github-actions-example">GitHub Actions Example<a class="anchor" aria-label="anchor" href="#github-actions-example"></a>
 </h2>
 <hr class="half-width">
 <p>In this <a href="e01-github-actions.html">GitHub Actions example</a>,
@@ -3279,7 +3310,8 @@ with Shifter (and Singularity)”</li>
 </h2>
 <hr class="half-width">
 <p>Do you have another example of using Docker in a workflow related to
-your field? Please [open a lesson issue] or <a href="https://github.com/carpentries-incubator/docker-introduction/pulls" class="external-link">submit
+your field? Please <a href="https://github.com/carpentries-incubator/docker-introduction/issues/new" class="external-link">open
+a lesson issue</a> or <a href="https://github.com/carpentries-incubator/docker-introduction/pulls" class="external-link">submit
 a pull request</a> to add it to this episode and the extras section of
 the lesson.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -3298,7 +3330,7 @@ images in your research project.</li>
 </div>
 </section></section><section id="aio-reproduciblity"><p>Content from <a href="reproduciblity.html">Containers in Research Workflows: Reproducibility and Granularity</a></p>
 <hr>
-<p>Last updated on 2024-08-01 |
+<p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/carpentries-incubator/docker-introduction/edit/main/episodes/reproduciblity.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3359,25 +3391,34 @@ practices will likely evolve in the near future.</p>
 <p>By <em>reproducibility</em> here we mean the ability of someone else
 (or your future self) being able to reproduce what you did
 computationally at a particular time (be this in research, analysis or
-something else) as closely as possible even if they do not have access
+something else) as closely as possible, even if they do not have access
 to exactly the same hardware resources that you had when you did the
 original work.</p>
+<p>What makes this especially important? With research being
+increasingly digital in nature, more and more of our research outputs
+are a result of the use of software and data processing or analysis.
+With complex software stacks or groups of dependencies often being
+required to run research software, we need approaches to ensure that we
+can make it as easy as possible to recreate an environment in which a
+given research process was undertaken. There many reasons why this
+matters, one example being someone wanting to reproduce the results of a
+publication in order to verify them and then build on that research.</p>
 <p>Some examples of why containers are an attractive technology to help
 with reproducibility include:</p>
 <ul>
-<li>The same computational work can be run across multiple different
-technologies seamlessly (e.g. Windows, macOS, Linux).</li>
+<li>The same computational work can be run seamlessly on different
+operating systems (e.g. Windows, macOS, Linux).</li>
 <li>You can save the exact process that you used for your computational
 work (rather than relying on potentially incomplete notes).</li>
 <li>You can save the exact versions of software and their dependencies
 in the container image.</li>
-<li>You can access legacy versions of software and underlying
+<li>You can provide access to legacy versions of software and underlying
 dependencies which may not be generally available any more.</li>
 <li>Depending on their size, you can also potentially store a copy of
 key data within the container image.</li>
-<li>You can archive and share the container image as well as associating
-a persistent identifier with a container image to allow other
-researchers to reproduce and build on your work.</li>
+<li>You can archive and share a container image as well as associating a
+persistent identifier with it, to allow other researchers to reproduce
+and build on your work.</li>
 </ul></section><section><h2 class="section-heading" id="sharing-images">Sharing images<a class="anchor" aria-label="anchor" href="#sharing-images"></a>
 </h2>
 <hr class="half-width">
@@ -3386,8 +3427,8 @@ sharing container images publicly. Once you have uploaded a container
 image, you can point people to its public location and they can download
 and build upon it.</p>
 <p>This is fine for working collaboratively with container images on a
-day-to-day basis but the Docker Hub is not a good option for long time
-archive of container images in support of research and publications
+day-to-day basis but the Docker Hub is not a good option for long-term
+archiving of container images in support of research and publications
 as:</p>
 <ul>
 <li>free accounts have a limit on how long a container image will be
@@ -3458,8 +3499,26 @@ references are made in both directions so that the container image and
 the documentation are appropriately linked.</li>
 <li>When you publish work (in whatever way) use an archiving and DOI
 service such as Zenodo to make sure your container image is captured as
-it was used for the work and that is obtains a persistent DOI to allow
-it to be cited and referenced properly.</li>
+it was used for the work and that it is assigned a persistent DOI to
+allow it to be cited and referenced properly.</li>
+<li>Make use of tags when naming your container images, this ensures
+that if you update the image in future, previous versions can be
+retained within a container repository to be easily accessed, if this is
+required.</li>
+<li>A built and archived container image can ensure a persistently
+bundled set of software and dependecies. However, a
+<code>Dockerfile</code> provides a lightweight means of storing a
+container definition that can be used to re-create a container image at
+a later time. If you’re taking this approach, ensure that you specify
+software package and dependency versions within your
+<code>Dockerfile</code> rather than just specifying package names which
+will generally install the most up-to-date version of a package. This
+may be incompatible with other elements of your software stack. Also
+note that storing only a <code>Dockerfile</code> presents
+reproducibility challenges because required versions of packages may not
+be available indefinitely, potentially meaning that you’re unable to
+reproduce the required environment and, hence, the research
+results.</li>
 </ul></section><section><h2 class="section-heading" id="container-granularity">Container Granularity<a class="anchor" aria-label="anchor" href="#container-granularity"></a>
 </h2>
 <hr class="half-width">
@@ -3620,7 +3679,7 @@ allows us to capture our work and enables reproducibility.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.8" class="external-link">sandpaper (0.16.8)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.9" class="external-link">sandpaper (0.16.9)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -3642,9 +3701,9 @@ allows us to capture our work and enables reproducibility.</li>
   "creativeWorkStatus": "active",
   "url": "https://preview.carpentries.org/docker-introduction/aio.html",
   "identifier": "https://preview.carpentries.org/docker-introduction/aio.html",
-  "dateCreated": "2024-08-01",
-  "dateModified": "2024-10-15",
-  "datePublished": "2024-10-15"
+  "dateCreated": "2024-10-12",
+  "dateModified": "2024-10-21",
+  "datePublished": "2024-10-21"
 }
 
   </script><script>
